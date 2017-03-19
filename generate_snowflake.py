@@ -46,9 +46,7 @@ def draw(line0, scale, sides, depth):
 	if depth == 0:
 		return
 	line0 = start_line(line0, scale, sides)
-	lines = []
 	for i in range(sides):
-		lines.append(line0)
 		print 'line', line0
 		draw(line0, scale, sides, depth-1)
 		line0 = copy_and_rotate(line0, sides)
