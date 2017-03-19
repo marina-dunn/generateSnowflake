@@ -1,0 +1,19 @@
+line 1 2 3 4
+line 1 2 3 4 Red
+line  -1  -2  -3  -4  
+line  -1  -2  -3  -4  Red
+line +1 +2 +3 +4
+line 250 250 250 250
+line -250 -250 -250 -250
+line 1x 2 3 4
+line 1 2x 3 4
+line 1 2 3x 4
+line 1 2 3 4x
+line 251 250 250 250
+line 250 251 250 250
+line 250 250 251 250
+line 250 250 250 251
+line 1 2 3
+line 1 2 3  
+line 1 2 3 4 5
+line 1 2 3 4 Red a

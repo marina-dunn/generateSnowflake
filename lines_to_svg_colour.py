@@ -65,6 +65,7 @@ def generate_svg_footer():
 def is_valid_colour(colour):
 	return colour.lower() in set_of_colours
 
+# uses css_colours.txt to create a set of all valid colours
 def generate_colour_set():
 	file = open('css_colours.txt')
 	set_of_colours = set()
@@ -90,6 +91,11 @@ preconditions
 	line does not contain tab or newline: too hard to deal with ^ position
 '''
 def parse_line(line):
+	
+	# need space at end so that we can require
+	# spaces between tokens so that the error
+	# message has ^ in the correct place
+	line += ' '
 	# re note: [ m.start(),m.end() ) for the region just matched
 
 	# *** match preceding whitespace to find initial position
@@ -108,7 +114,7 @@ def parse_line(line):
 
 	# *** parse x0 y0 x1 y1
 	L = [ ]
-	x = re.compile('([+-]?\d+) *')
+	x = re.compile('([+-]?\d+) +')
 	while True:
 		m = x.match(line, offset)
 		if m:
@@ -128,14 +134,20 @@ def parse_line(line):
 				if offset == len(line):
 					return L
 				else:
-					x = re.compile('([A-Za-z]+)')
+					# pare for colour
+					x = re.compile('([A-Za-z]+) *')
 					m = x.match(line, offset)
 					if m and is_valid_colour(m.group(1)):
-						L.append(m.group(1))
-						return L
-					else:
-						return offset
-		else:
+						offset = m.end()
+						if offset == len(line):
+							L.append(m.group(1))
+							return L
+					# invalid colour or something after colour
+					return offset
+		elif offset == len(line):
+			#because of space added to end of line
+			return offset-1
+		else:	
 			return offset
 
 
@@ -157,7 +169,7 @@ def process_lines_file(lines_file):
 		L = parse_line(line)
 		if type(L) == list:
 			x0, y0, x1, y1 = L[0], L[1], L[2], L[3]
-			colour = 'black'
+			colour = 'Black'
 			if len(L) == 5:
 				colour = L[4]
 		else:

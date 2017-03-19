@@ -1,0 +1,4 @@
+line 0 250 -250 0 Red
+line -250 0 0 -250 Blue
+line 0 -250 250 0 Black
+line 250 0 0 250
