@@ -32,7 +32,7 @@ def start_line(line, scale, sides):
 
 	return new_line
 
-#returns deep copy of line then rotates the required amount given 
+#returns deep copy of line rotated the required amount 
 #given the number of sides
 def copy_and_rotate(line, sides):
 	new_line = Line(line.point0, line.point1)
