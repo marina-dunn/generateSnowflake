@@ -11,7 +11,7 @@ preconditions
 
 #
 def start_line(line, scale, sides):
-	# copy root
+	# copy line
 	new_line = Line(line.point0, line.point1)
 
 	# translate to origin
@@ -50,9 +50,6 @@ def draw(line0, scale, sides, depth):
 		print 'line', line0
 		draw(line0, scale, sides, depth-1)
 		line0 = copy_and_rotate(line0, sides)
-		
-	
-
 
 # ********** process the command line arguments
 if len(sys.argv) != 4:
