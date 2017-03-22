@@ -1,0 +1,5 @@
+#!/bin/bash
+
+python generate_snowflake.py $1 $2 $3 > s.txt
+python lines_to_svg.py s.txt > s.svg
+open s.svg -a 'Google Chrome'

@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+python generate_snowflake.py 4 0.5 4 > a.txt
+python snowing.py a.txt > as.txt
+python lines_to_svg.py as.txt > as.svg
+open as.svg -a "Google Chrome"
