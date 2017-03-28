@@ -25,19 +25,31 @@ def load_line_file(file_object):
 	return line_objects
 
 
-file = open(sys.argv[1])
+if len(sys.argv) != 4:
+	print >> sys.stderr, 'Syntax: ' + sys.argv[0] + ' sides scale depth'
+	sys.exit(1)
+try:
+	rang = int(sys.argv[1])
+	scal = float(sys.argv[2])
+	file = open(sys.argv[3])
+except ValueError:
+	print >> sys.stderr, 'Syntax: ' + sys.argv[0] + ' sides scale depth'
+	sys.exit(2)
+	
 
 line_list = load_line_file(file)
 
 for line in line_list:
-	line.scale(0.1) # change 0.1 to command line input maybe?
-for i in range(5): # change 5 to command line input
+	line.scale(scal) # change 0.1 to command line input maybe?
+for i in range(rang): # change 5 to command line input
 	x = float(random.randrange(-200,200)) # could calculate actual range
 	y = float(random.randrange(-200,200))
 	for line in line_list:
 		line.translate(x,y)
 		print 'line', line
 		line.translate(-x,-y)
+
+
 
 
 
